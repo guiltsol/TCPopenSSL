@@ -1,0 +1,8 @@
+﻿  main.cpp
+  Server.cpp
+C:\Users\derom\Desktop\TCPopenSSL\Server\server.h(10,10): error C1083: Не удается открыть файл включение: openssl/ssl.h: No such file or directory,
+  (компиляция исходного файла "main.cpp")
+  
+C:\Users\derom\Desktop\TCPopenSSL\Server\server.h(10,10): error C1083: Не удается открыть файл включение: openssl/ssl.h: No such file or directory,
+  (компиляция исходного файла "Server.cpp")
+  
