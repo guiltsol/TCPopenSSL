@@ -3,8 +3,10 @@
 
 int main()
 {
-
-    TCPserver::Server server(8288, "192.168.0.103");
+    setlocale(LC_ALL, "Rus");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    TCPserver::Server server(8288, "127.0.0.1");
     server.start();
 
     return 0;

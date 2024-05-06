@@ -1,0 +1,8 @@
+﻿  Client.cpp
+E:\down\TCPopenSSL-main\Client\Client.cpp(131,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 153 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Client.vcxproj -> E:\down\TCPopenSSL-main\x64\Release\Client.exe

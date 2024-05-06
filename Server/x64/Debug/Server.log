@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  Server.cpp
+E:\down\TCPopenSSL-main\Server\Server.cpp(153,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\down\TCPopenSSL-main\Server\Server.cpp(165,81): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Server.vcxproj -> E:\down\TCPopenSSL-main\x64\Debug\Server.exe

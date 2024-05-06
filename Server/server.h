@@ -48,6 +48,7 @@ namespace TCPserver
 		bool processPacket(int Index, Packet packetType);
 		bool processChatMessagePacket(int Index);
 		void sendMessageByIndex(int Index, char* msg, int msgSize, Packet packetType);
+		void chooseIPAddress();
 	public:
 		Server(int, std::string);
 		~Server();

@@ -1,9 +1,19 @@
 ﻿#include <iostream>
+#include <ctime>
 #pragma comment(lib, "ws2_32.lib")
 #include "WinSock2.h"
 #include "Client.h"
 #pragma warning(disable:4996)
 
+std::string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%X", &tstruct);
+
+    return buf;
+}
 
 void TCPserver::Client::setUsername(std::string username)
 {
@@ -83,8 +93,9 @@ bool TCPserver::Client::processChatMessagePacket()
     char* msg = new char[msgSize + 1];
     msg[msgSize] = '\0';
     recv(Connection, msg, msgSize, NULL);
-    std::cout << "New message: ";
-    std::cout << msg << "\n";
+    std::string timeStr = currentDateTime();
+   // std::cout << "New message: ";
+    std::cout << timeStr << " - Message sent: " << msg << std::endl;
 
     delete[] msg;
     return true;
@@ -112,22 +123,25 @@ bool TCPserver::Client::sendChatPacket()
 {
     Packet packetType = P_ChatMessage;
 
-    std::cout << "Enter a chat message: ";
+    //std::cout << "Enter a chat message: ";
     std::string message;
     std::getline(std::cin, message);
 
     std::string fullMessage = username + ": " + message; // Используйте сохраненное имя пользователя
+    
     int messageSize = fullMessage.size();
+    std::string timeStr = currentDateTime();
 
     send(Connection, (char*)&packetType, sizeof(Packet), NULL);
     send(Connection, (char*)&messageSize, sizeof(int), NULL);
     send(Connection, fullMessage.c_str(), messageSize, NULL);
-
+    std::cout << timeStr << " - Message sent: " << fullMessage << std::endl;
     return true;
 }
 
 void TCPserver::Client::sendPacket()
 {
+    /*
     std::cout << "\nSelect packet type: " << std::endl;
     std::cout << "1: " << "Chat Message" << std::endl;
     
@@ -145,5 +159,6 @@ void TCPserver::Client::sendPacket()
         std::cout << "Unknown packet type" << std::endl;
         break;
     }
-    
+    */
+    sendChatPacket();
 }
