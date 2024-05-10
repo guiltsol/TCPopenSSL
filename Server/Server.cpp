@@ -29,7 +29,7 @@ TCPserver::Server::~Server()
 
 void TCPserver::Server::start()
 {
-
+	std::cout << "Server Start" << "\n";
 	init();
 	while(true)
 	{
@@ -53,44 +53,7 @@ void TCPserver::Server::init()
     bind(serversocket, (SOCKADDR*)&addr, addrlength);
     listen(serversocket, SOMAXCONN);
 
-    // Отобразите все доступные IP-адреса
-    char host[256];
-    gethostname(host, sizeof(host));
-
-    struct addrinfo hints, *res, *p;
-    memset(&hints, 0, sizeof(hints));
-    hints.ai_family = AF_UNSPEC; // AF_INET или AF_INET6, чтобы зафиксировать версию
-    hints.ai_socktype = SOCK_STREAM;
-
-    if (getaddrinfo(host, NULL, &hints, &res) != 0) {
-        perror("getaddrinfo() не удалось");
-        exit(EXIT_FAILURE);
-    }
-
-    std::cout << "Доступные IP-адреса для " << host << ":\n";
-    char ipstr[INET6_ADDRSTRLEN];
-    for(p = res; p != NULL; p = p->ai_next) {
-        void *addr;
-        std::string ipver;
-
-        // получить указатель на сам адрес,
-        // разные поля в IPv4 и IPv6:
-        if (p->ai_family == AF_INET) { // IPv4
-            struct sockaddr_in *ipv4 = (struct sockaddr_in *)p->ai_addr;
-            addr = &(ipv4->sin_addr);
-            ipver = "IPv4";
-        } else { // IPv6
-            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
-            addr = &(ipv6->sin6_addr);
-            ipver = "IPv6";
-        }
-
-        // преобразовать IP в строку и напечатать его:
-        inet_ntop(p->ai_family, addr, ipstr, sizeof(ipstr));
-        std::cout << ipver << ": " << ipstr << std::endl;
-    }
-
-    freeaddrinfo(res); // Освободите связанный список
+   
 }
 
 void TCPserver::Server::getCconnect()

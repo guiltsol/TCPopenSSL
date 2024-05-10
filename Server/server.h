@@ -52,6 +52,7 @@ namespace TCPserver
 	public:
 		Server(int, std::string);
 		~Server();
+		//void init();
 	public:
 		void start();
 		//void stop();
